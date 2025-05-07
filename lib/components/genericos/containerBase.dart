@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class Containerbase extends StatelessWidget {
@@ -16,9 +18,9 @@ class Containerbase extends StatelessWidget {
     this.onClick,
   });
 
-  Widget conteudo() {
+  Widget conteudo(BuildContext context) {
     return Container(
-      width: width ?? 350,
+      width: min(MediaQuery.of(context).size.width, 450) - 32,
       height: height,
       decoration: BoxDecoration(
         color: color ?? Colors.white,
@@ -32,9 +34,9 @@ class Containerbase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (onClick != null) {
-      return ElevatedButton(onPressed: () => onClick!(), child: conteudo());
+      return TextButton(onPressed: () => onClick!(), child: conteudo(context));
     }
 
-    return conteudo();
+    return conteudo(context);
   }
 }

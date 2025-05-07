@@ -5,49 +5,58 @@ import 'package:taskflow/pages/informacoesProjeto/informacoesProjeto.dart';
 
 class Redirecionador {
   /* Redirecionamentos do main */
-  void adicionarNovoProjeto(BuildContext context) async {
+  void adicionarNovoProjeto(BuildContext context, {Function? update}) async {
     print("irPara adicionarNovoProjeto");
   }
 
-  void relatorioDoProjeto(BuildContext context) async {
+  void relatorioDoProjeto(
+    BuildContext context,
+    int idProjeto, {
+    Function? update,
+  }) async {
     final retorno = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => informacoesProjeto()),
+      MaterialPageRoute(
+        builder: (context) => informacoesProjeto(idProjeto: idProjeto),
+      ),
     );
     print(retorno);
   }
 
-  void configuracoesDoProjeto(BuildContext context) async {
+  void configuracoesDoProjeto(BuildContext context, {Function? update}) async {
     print("irPara configuracoesDoProjeto");
   }
 
   /* Redirecionamentos do relatorioDoProjeto */
-  void gastosDoProjeto(BuildContext context) async {
+  void gastosDoProjeto(BuildContext context, {Function? update}) async {
     print("irPara gastosDoProjeto");
   }
 
-  void historicoDeDiasDoProjeto(BuildContext context) async {
+  void historicoDeDiasDoProjeto(
+    BuildContext context, {
+    Function? update,
+  }) async {
     print("irPara historicoDeDiasDoProjeto");
   }
 
-  void informacoesDoDia(BuildContext context) async {
+  void informacoesDoDia(BuildContext context, {Function? update}) async {
     print("irPara informacoesDoDia");
   }
 
   /* Redirecionamentos do gastosDoProjeto */
-  void novoGasto(BuildContext context) async {
+  void novoGasto(BuildContext context, {Function? update}) async {
     print("irPara novoGasto");
   }
 
-  void informacoesDoGasto(BuildContext context) async {
+  void informacoesDoGasto(BuildContext context, {Function? update}) async {
     print("irPara informacoesDoGasto");
   }
 
-  void historicoDeGastos(BuildContext context) async {
+  void historicoDeGastos(BuildContext context, {Function? update}) async {
     print("irPara historicoDeGastos");
   }
 
   void voltar(BuildContext context) async {
-    print("Voltar");
+    Navigator.pop(context, true); // True é para resetar
   }
 }

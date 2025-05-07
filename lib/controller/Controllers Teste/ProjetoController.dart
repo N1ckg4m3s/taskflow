@@ -2,7 +2,7 @@
 
 import 'package:taskflow/controller/types.dart';
 
-List<Projeto> ProjetosTeste = [
+List<Projeto> projetosTeste = [
   Projeto(
     id: 0,
     dataInicio: DateTime.now(),
@@ -33,8 +33,57 @@ List<Projeto> ProjetosTeste = [
   ),
 ];
 
+List<DiaAgenda> dias_teste = [
+  DiaAgenda(
+    id: 0,
+    status: StatusDiaAgenda.NaoDefinido,
+    idProjeto: 1,
+    data: DateTime(2025, 5, 6),
+  ),
+  DiaAgenda(
+    id: 1,
+    status: StatusDiaAgenda.NaoDefinido,
+    idProjeto: 2,
+    data: DateTime(2025, 5, 7),
+  ),
+  DiaAgenda(
+    id: 2,
+    status: StatusDiaAgenda.NaoDefinido,
+    idProjeto: 2,
+    data: DateTime(2025, 5, 8),
+  ),
+  DiaAgenda(
+    id: 3,
+    status: StatusDiaAgenda.NaoDefinido,
+    idProjeto: 3,
+    data: DateTime(2025, 5, 9),
+  ),
+  DiaAgenda(
+    id: 4,
+    status: StatusDiaAgenda.Atencao,
+    idProjeto: 2,
+    data: DateTime(2025, 5, 7),
+  ),
+  DiaAgenda(
+    id: 5,
+    status: StatusDiaAgenda.Folga,
+    idProjeto: 2,
+    data: DateTime(2025, 5, 7),
+  ),
+  DiaAgenda(
+    id: 6,
+    status: StatusDiaAgenda.Trabalhado,
+    idProjeto: 2,
+    data: DateTime(2025, 5, 7),
+  ),
+];
+
 class Projetocontroller_teste {
-  Future<List<Projeto>> obterTodosOsProjetos() async {
-    return ProjetosTeste;
+  List<Projeto> obterTodosOsProjetos() {
+    return projetosTeste;
+  }
+
+  List<DiaAgenda> obterDiasDoProjeto(int idProjeto) {
+    return dias_teste.where((d) => d.idProjeto == idProjeto).toList();
   }
 }

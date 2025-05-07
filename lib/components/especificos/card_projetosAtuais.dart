@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskflow/components/containerBase.dart';
+import 'package:taskflow/components/genericos/containerBase.dart';
 import 'package:taskflow/controller/types.dart';
 
 class CardProjetosatuais extends StatelessWidget {

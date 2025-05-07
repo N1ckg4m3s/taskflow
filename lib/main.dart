@@ -15,13 +15,17 @@ class MyApp extends StatelessWidget {
       title: 'TaskFlow',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFF7FCD5), // cor geral
-        splashFactory: NoSplash.splashFactory, // remove splash
-        highlightColor: Colors.transparent, // remove highlight
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            padding: const EdgeInsets.symmetric(horizontal: 0),
-            foregroundColor: Colors.black,
+        splashFactory: NoSplash.splashFactory,
+        highlightColor: Colors.transparent,
+
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            overlayColor: WidgetStateProperty.all(Colors.transparent),
+            foregroundColor: WidgetStateProperty.all(Colors.black),
+            padding: WidgetStateProperty.all<EdgeInsets>(EdgeInsets.zero),
+            minimumSize: WidgetStateProperty.all<Size>(Size.zero),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            alignment: Alignment.center,
           ),
         ),
         textTheme: GoogleFonts.grandstanderTextTheme(),

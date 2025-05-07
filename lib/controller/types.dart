@@ -2,6 +2,8 @@
 
 enum StatusProjeto { EmAndamento, EmEspera, Concluido, Cancelado }
 
+enum StatusDiaAgenda { NaoDefinido, Trabalhado, Folga, Atencao }
+
 class Projeto {
   final int id;
   final DateTime dataInicio;
@@ -15,5 +17,19 @@ class Projeto {
     required this.dataFim,
     required this.nome,
     required this.statusProjeto,
+  });
+}
+
+class DiaAgenda {
+  final int id;
+  final int idProjeto;
+  final DateTime data;
+  final StatusDiaAgenda status;
+
+  DiaAgenda({
+    required this.status,
+    required this.idProjeto,
+    required this.data,
+    required this.id,
   });
 }

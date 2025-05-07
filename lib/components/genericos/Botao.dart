@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskflow/components/containerBase.dart';
+import 'package:taskflow/components/genericos/containerBase.dart';
 
 class Botao extends StatelessWidget {
   final double? width;
@@ -19,14 +19,12 @@ class Botao extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () => onClick(),
-      child: Containerbase(
-        width: width,
-        height: height,
-        color: color,
-        child: child,
-      ),
+    return Containerbase(
+      width: width,
+      height: height,
+      color: color,
+      onClick: onClick,
+      child: Center(child: child),
     );
   }
 }
