@@ -10,7 +10,6 @@ class relatorioProjeto extends StatelessWidget {
   Widget build(BuildContext context) {
     return Containerbase(
       color: Colors.white,
-      height: 310,
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Column(

@@ -28,19 +28,29 @@ class MyApp extends StatelessWidget {
             alignment: Alignment.center,
           ),
         ),
+
         textTheme: GoogleFonts.grandstanderTextTheme(),
+
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: BorderSide(color: Colors.black, width: 2),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: BorderSide(color: Colors.black, width: 2),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: BorderSide(color: Colors.black, width: 2),
+          ),
+        ),
       ),
       home: Scaffold(
         backgroundColor: Color(0xFFF7FCD5), // cor geral do app
-        body: Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 450),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: listaProjetos(),
-            ),
-          ),
-        ),
+        body: Center(child: listaProjetos()),
       ),
     );
   }

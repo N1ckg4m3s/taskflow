@@ -1,15 +1,20 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:taskflow/controller/types.dart';
+import 'package:taskflow/pages/informacoesDoDia/informacoesDoDia.dart';
 import 'package:taskflow/pages/informacoesProjeto/informacoesProjeto.dart';
 
 class Redirecionador {
   /* Redirecionamentos do main */
-  void adicionarNovoProjeto(BuildContext context, {Function? update}) async {
+  void redirect_to_adicionarNovoProjeto(
+    BuildContext context, {
+    Function? update,
+  }) async {
     print("irPara adicionarNovoProjeto");
   }
 
-  void relatorioDoProjeto(
+  void redirect_to_relatorioDoProjeto(
     BuildContext context,
     int idProjeto, {
     Function? update,
@@ -23,40 +28,63 @@ class Redirecionador {
     print(retorno);
   }
 
-  void configuracoesDoProjeto(BuildContext context, {Function? update}) async {
+  void redirect_to_configuracoesDoProjeto(
+    BuildContext context, {
+    Function? update,
+  }) async {
     print("irPara configuracoesDoProjeto");
   }
 
   /* Redirecionamentos do relatorioDoProjeto */
-  void gastosDoProjeto(BuildContext context, {Function? update}) async {
+  void redirect_to_gastosDoProjeto(
+    BuildContext context, {
+    Function? update,
+  }) async {
     print("irPara gastosDoProjeto");
   }
 
-  void historicoDeDiasDoProjeto(
+  void redirect_to_historicoDeDiasDoProjeto(
     BuildContext context, {
     Function? update,
   }) async {
     print("irPara historicoDeDiasDoProjeto");
   }
 
-  void informacoesDoDia(BuildContext context, {Function? update}) async {
-    print("irPara informacoesDoDia");
+  void redirect_to_informacoesDoDia(
+    BuildContext context,
+    DiaAgenda dia, {
+    Function? update,
+  }) async {
+    final retorno = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder:
+            (context) => informacoesDoDia(idProjeto: dia.idProjeto, idDia: dia.id),
+      ),
+    );
+    print(retorno);
   }
 
   /* Redirecionamentos do gastosDoProjeto */
-  void novoGasto(BuildContext context, {Function? update}) async {
+  void redirect_to_novoGasto(BuildContext context, {Function? update}) async {
     print("irPara novoGasto");
   }
 
-  void informacoesDoGasto(BuildContext context, {Function? update}) async {
+  void redirect_to_informacoesDoGasto(
+    BuildContext context, {
+    Function? update,
+  }) async {
     print("irPara informacoesDoGasto");
   }
 
-  void historicoDeGastos(BuildContext context, {Function? update}) async {
+  void redirect_to_historicoDeGastos(
+    BuildContext context, {
+    Function? update,
+  }) async {
     print("irPara historicoDeGastos");
   }
 
-  void voltar(BuildContext context) async {
+  void redirect_to_voltar(BuildContext context) async {
     Navigator.pop(context, true); // True é para resetar
   }
 }

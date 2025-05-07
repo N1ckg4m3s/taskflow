@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskflow/components/genericos/containerBase.dart';
+import 'package:taskflow/components/genericos/Botao.dart';
 import 'package:taskflow/controller/types.dart';
 
 class CardProjetosatuais extends StatelessWidget {
@@ -54,10 +54,10 @@ class CardProjetosatuais extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Containerbase(
+    return Botao(
       onClick: onClick,
       color: definirCorPeloStatus(),
-      height: 55,
+      // height: 55,
       child: Column(
         children: [
           Row(

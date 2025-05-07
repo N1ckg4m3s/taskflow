@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:taskflow/components/genericos/Botao.dart';
+import 'package:taskflow/components/genericos/construtorFuturo.dart';
 import 'package:taskflow/components/imutavel/SingleLine.dart';
 import 'package:taskflow/components/especificos/card_projetosAtuais.dart';
 import 'package:taskflow/components/genericos/iniciarPagina.dart';
@@ -23,10 +24,12 @@ class listaProjetos extends StatelessWidget {
           children: [
             Text("Projetos atuais", style: TextStyle(fontSize: 25)),
             Botao(
-              // width: screenWidth - 32,
               height: 45,
               color: Color(0xFFD8D8D8),
-              onClick: () => Redirecionador().adicionarNovoProjeto(context),
+              onClick:
+                  () => Redirecionador().redirect_to_adicionarNovoProjeto(
+                    context,
+                  ),
               child: Center(
                 child: Text(
                   "Adicionar novo projeto",
@@ -36,36 +39,28 @@ class listaProjetos extends StatelessWidget {
             ),
             SingleLine(),
             SingleChildScrollView(
-              child: FutureBuilder(
+              child: Construtorfuturo<List<Projeto>>(
                 future: Projetocontroller().obterTodosOsProjetos(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  }
-
-                  List<Projeto>? projetos = snapshot.data;
-
-                  if (projetos == null || projetos.isEmpty) {
-                    return Text("Sem projetos");
-                  }
-
-                  return Column(
-                    spacing: gap,
-                    children:
-                        projetos
-                            .map(
-                              (proj) => CardProjetosatuais(
-                                projeto: proj,
-                                onClick:
-                                    () => Redirecionador().relatorioDoProjeto(
-                                      context,
-                                      proj.id,
-                                    ),
-                              ),
-                            )
-                            .toList(),
-                  );
-                },
+                loading: Center(child: CircularProgressIndicator()),
+                noData: Text("Sem projetos"),
+                builder:
+                    (projetos) => Column(
+                      spacing: gap,
+                      children:
+                          projetos
+                              .map(
+                                (proj) => CardProjetosatuais(
+                                  projeto: proj,
+                                  onClick:
+                                      () => Redirecionador()
+                                          .redirect_to_relatorioDoProjeto(
+                                            context,
+                                            proj.id,
+                                          ),
+                                ),
+                              )
+                              .toList(),
+                    ),
               ),
             ),
           ],

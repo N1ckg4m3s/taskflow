@@ -6,25 +6,30 @@ class Botao extends StatelessWidget {
   final double? height;
   final Color? color;
   final Function onClick;
+  final Function? onHold;
   final Widget child;
 
   const Botao({
     super.key,
     this.width,
-    required this.height,
+    this.height,
     this.color,
     required this.child,
+    this.onHold,
     required this.onClick,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Containerbase(
-      width: width,
-      height: height,
-      color: color,
-      onClick: onClick,
-      child: Center(child: child),
+    return TextButton(
+      onPressed: () => onClick(),
+      onLongPress: onHold != null ? () => onHold!() : () => {},
+      child: Containerbase(
+        width: width,
+        height: height,
+        color: color,
+        child: Center(child: child),
+      ),
     );
   }
 }

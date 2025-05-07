@@ -1,4 +1,5 @@
 // ignore_for_file: constant_identifier_names
+enum GeralInputType { texto, numero, dia, hora, opcoes }
 
 enum StatusProjeto { EmAndamento, EmEspera, Concluido, Cancelado }
 

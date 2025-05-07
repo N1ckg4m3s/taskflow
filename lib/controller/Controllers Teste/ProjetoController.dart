@@ -86,4 +86,8 @@ class Projetocontroller_teste {
   List<DiaAgenda> obterDiasDoProjeto(int idProjeto) {
     return dias_teste.where((d) => d.idProjeto == idProjeto).toList();
   }
+
+  Future<DiaAgenda> obterDia(int idDia) async {
+    return dias_teste.firstWhere((d) => d.id == idDia);
+  }
 }

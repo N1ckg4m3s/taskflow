@@ -7,7 +7,7 @@ class voltarNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => Redirecionador().voltar(context),
+      onPressed: () => Redirecionador().redirect_to_voltar(context),
       child: Row(
         spacing: 10,
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -9,9 +9,12 @@ class Iniciarpagina extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: 500),
-        child: child,
+      body: Padding(
+        padding: EdgeInsets.only(left: 16, top: 32, right: 16),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 500),
+          child: child,
+        ),
       ),
     );
   }

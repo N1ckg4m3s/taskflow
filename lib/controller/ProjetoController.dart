@@ -9,4 +9,8 @@ class Projetocontroller {
   Future<List<DiaAgenda>> obterDiasDoProjeto(int idProjeto) async {
     return Projetocontroller_teste().obterDiasDoProjeto(idProjeto);
   }
+
+  Future<DiaAgenda> obterDia(int idDia) async {
+    return Projetocontroller_teste().obterDia(idDia);
+  }
 }

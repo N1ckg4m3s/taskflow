@@ -1,7 +1,8 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:taskflow/components/genericos/containerBase.dart';
+import 'package:taskflow/components/genericos/Botao.dart';
+import 'package:taskflow/controller/Redirecionador.dart';
 import 'package:taskflow/controller/types.dart';
 
 class cardDiatrabalhado extends StatelessWidget {
@@ -57,9 +58,17 @@ class cardDiatrabalhado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Containerbase(
+    final bool redirect =
+        dia.status == StatusDiaAgenda.Atencao ||
+        dia.status == StatusDiaAgenda.Trabalhado;
+    return Botao(
+      onClick: () => {print('change Status')},
+      onHold:
+          redirect
+              ? () =>
+                  Redirecionador().redirect_to_informacoesDoDia(context, dia)
+              : null,
       color: definirCorPeloStatus(),
-      height: 67,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
