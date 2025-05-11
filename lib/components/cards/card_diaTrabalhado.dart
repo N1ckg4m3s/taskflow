@@ -6,8 +6,13 @@ import 'package:taskflow/controller/types.dart';
 
 class cardDiaTrabalhado extends StatefulWidget {
   final DiaAgenda dia;
+  final Function onUpdate;
 
-  const cardDiaTrabalhado({super.key, required this.dia});
+  const cardDiaTrabalhado({
+    super.key,
+    required this.dia,
+    required this.onUpdate,
+  });
 
   @override
   State<cardDiaTrabalhado> createState() => _CardDiaTrabalhadoState();
@@ -76,6 +81,7 @@ class _CardDiaTrabalhadoState extends State<cardDiaTrabalhado> {
               ? () => Redirecionador().redirect_to_informacoesDoDia(
                 context,
                 widget.dia,
+                update: widget.onUpdate,
               )
               : null,
       color: definirCorPeloStatus(),

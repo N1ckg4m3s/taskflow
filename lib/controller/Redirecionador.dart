@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, non_constant_identifier_names
+// ignore_for_file: avoid_print, non_constant_identifier_names, dead_code
 
 import 'package:flutter/material.dart';
 import 'package:taskflow/controller/types.dart';
@@ -12,6 +12,9 @@ class Redirecionador {
     Function? update,
   }) async {
     print("irPara adicionarNovoProjeto");
+    final bool retorno = false;
+
+    if (retorno && update != null) update();
   }
 
   void redirect_to_relatorioDoProjeto(
@@ -25,7 +28,8 @@ class Redirecionador {
         builder: (context) => informacoesProjeto(idProjeto: idProjeto),
       ),
     );
-    print(retorno);
+
+    if (retorno && update != null) update();
   }
 
   void redirect_to_configuracoesDoProjeto(
@@ -33,6 +37,9 @@ class Redirecionador {
     Function? update,
   }) async {
     print("irPara configuracoesDoProjeto");
+    final bool retorno = false;
+
+    if (retorno && update != null) update();
   }
 
   /* Redirecionamentos do relatorioDoProjeto */
@@ -41,6 +48,9 @@ class Redirecionador {
     Function? update,
   }) async {
     print("irPara gastosDoProjeto");
+    final bool retorno = false;
+
+    if (retorno && update != null) update();
   }
 
   void redirect_to_historicoDeDiasDoProjeto(
@@ -48,6 +58,9 @@ class Redirecionador {
     Function? update,
   }) async {
     print("irPara historicoDeDiasDoProjeto");
+    final bool retorno = false;
+
+    if (retorno && update != null) update();
   }
 
   void redirect_to_informacoesDoDia(
@@ -55,19 +68,24 @@ class Redirecionador {
     DiaAgenda dia, {
     Function? update,
   }) async {
-    final retorno = await Navigator.push(
+    final bool retorno = await Navigator.push(
       context,
       MaterialPageRoute(
         builder:
-            (context) => informacoesDoDia(idProjeto: dia.idProjeto, idDia: dia.id),
+            (context) =>
+                informacoesDoDia(idProjeto: dia.idProjeto, idDia: dia.id),
       ),
     );
-    print(retorno);
+
+    if (retorno && update != null) update();
   }
 
   /* Redirecionamentos do gastosDoProjeto */
   void redirect_to_novoGasto(BuildContext context, {Function? update}) async {
     print("irPara novoGasto");
+    final bool retorno = false;
+
+    if (retorno && update != null) update();
   }
 
   void redirect_to_informacoesDoGasto(
@@ -75,6 +93,9 @@ class Redirecionador {
     Function? update,
   }) async {
     print("irPara informacoesDoGasto");
+    final bool retorno = false;
+
+    if (retorno && update != null) update();
   }
 
   void redirect_to_historicoDeGastos(
@@ -82,6 +103,9 @@ class Redirecionador {
     Function? update,
   }) async {
     print("irPara historicoDeGastos");
+    final bool retorno = false;
+
+    if (retorno && update != null) update();
   }
 
   void redirect_to_voltar(BuildContext context) async {

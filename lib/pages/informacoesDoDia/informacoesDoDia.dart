@@ -5,6 +5,7 @@ import 'package:taskflow/components/genericos/construtorFuturo.dart';
 import 'package:taskflow/components/genericos/iniciarPagina.dart';
 import 'package:taskflow/components/imutavel/voltarNavBar.dart';
 import 'package:taskflow/controller/DiaAgendaController.dart';
+import 'package:taskflow/controller/Redirecionador.dart';
 import 'package:taskflow/controller/types.dart';
 import 'package:taskflow/pages/informacoesDoDia/modules/infomacaoDoStatus.dart';
 import 'package:taskflow/pages/informacoesDoDia/modules/relatorioDoDia.dart';
@@ -41,6 +42,7 @@ class _InformacoesDoDiaState extends State<informacoesDoDia> {
       if (observacao.isNotEmpty) {
         DiaAgendacontroller().salvarInfoAtencao(widget.idDia, observacao);
       }
+      Redirecionador().redirect_to_voltar(context);
     } else if (statusDia == StatusDiaAgenda.Trabalhado) {
       if (validarHorarios()) {
         DiaAgendacontroller().salvarInfoTrabalhado(
@@ -48,6 +50,7 @@ class _InformacoesDoDiaState extends State<informacoesDoDia> {
           horarioEntrada,
           horarioSaida,
         );
+        Redirecionador().redirect_to_voltar(context);
       }
     }
   }
