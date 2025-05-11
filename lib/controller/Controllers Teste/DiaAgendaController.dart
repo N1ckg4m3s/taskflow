@@ -14,37 +14,6 @@ StatusDiaAgenda qualChange(StatusDiaAgenda atual) {
   }
 }
 
-List<Projeto> projetosTeste = [
-  Projeto(
-    id: 0,
-    dataInicio: DateTime.now(),
-    dataFim: DateTime.now(),
-    nome: "Projeto Cancelado",
-    statusProjeto: StatusProjeto.Cancelado,
-  ),
-  Projeto(
-    id: 1,
-    dataInicio: DateTime.now(),
-    dataFim: DateTime.now(),
-    nome: "Projeto Concluido",
-    statusProjeto: StatusProjeto.Concluido,
-  ),
-  Projeto(
-    id: 2,
-    dataInicio: DateTime.now(),
-    dataFim: DateTime.now(),
-    nome: "Projeto EmAndamento",
-    statusProjeto: StatusProjeto.EmAndamento,
-  ),
-  Projeto(
-    id: 3,
-    dataInicio: DateTime.now(),
-    dataFim: DateTime.now(),
-    nome: "Projeto EmEspera",
-    statusProjeto: StatusProjeto.EmEspera,
-  ),
-];
-
 List<DiaAgenda> dias_teste = [
   DiaAgenda(
     id: 0,
@@ -90,8 +59,34 @@ List<DiaAgenda> dias_teste = [
   ),
 ];
 
-class Projetocontroller_teste {
-  List<Projeto> obterTodosOsProjetos() {
-    return projetosTeste;
+class DiaAgendaController_teste {
+  List<DiaAgenda> obterDiasDoProjeto(int idProjeto) {
+    return dias_teste.where((d) => d.idProjeto == idProjeto).toList();
+  }
+
+  Future<DiaAgenda> obterDia(int idDia) async {
+    return dias_teste.firstWhere((d) => d.id == idDia);
+  }
+
+  Future<void> mudarStatusDoDia(int idDia, StatusDiaAgenda newStatus) async {
+    final DiaAgenda diaAchado = await obterDia(idDia);
+
+    diaAchado.status = newStatus;
+  }
+
+  Future<void> salvarInfoTrabalhado(
+    int idDia,
+    String horarioEntrada,
+    String horarioSaida,
+  ) async {
+    final DiaAgenda diaAchado = await obterDia(idDia);
+
+    diaAchado.horarioEntrada = horarioEntrada;
+    diaAchado.horarioSaida = horarioSaida;
+  }
+
+  Future<void> salvarInfoAtencao(int idDia, String observacao) async {
+    final DiaAgenda diaAchado = await obterDia(idDia);
+    diaAchado.observacaoAtencao = observacao;
   }
 }

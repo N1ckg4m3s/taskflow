@@ -6,7 +6,14 @@ import 'package:taskflow/controller/types.dart';
 
 // Especificação se o status for Trabalhado
 class Infomacao_Trabalhado extends StatelessWidget {
-  const Infomacao_Trabalhado({super.key});
+  final Function definirValorDoHorarioDeEntrada;
+  final Function definirValorDoHorarioDeSaida;
+
+  const Infomacao_Trabalhado({
+    super.key,
+    required this.definirValorDoHorarioDeEntrada,
+    required this.definirValorDoHorarioDeSaida,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +24,12 @@ class Infomacao_Trabalhado extends StatelessWidget {
             GeneralInput(
               type: GeralInputType.hora,
               label: 'Horário entrada',
-              onSubmit: (val) => print('Hora: $val'),
+              onSubmit: (val) => definirValorDoHorarioDeEntrada(val),
             ),
             GeneralInput(
               type: GeralInputType.hora,
               label: 'Horário saída',
-              onSubmit: (val) => print('Hora: $val'),
+              onSubmit: (val) => definirValorDoHorarioDeSaida(val),
             ),
           ],
         ),

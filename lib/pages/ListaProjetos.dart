@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:taskflow/components/genericos/Botao.dart';
 import 'package:taskflow/components/genericos/construtorFuturo.dart';
 import 'package:taskflow/components/imutavel/SingleLine.dart';
-import 'package:taskflow/components/especificos/card_projetosAtuais.dart';
+import 'package:taskflow/components/cards/card_projetosAtuais.dart';
 import 'package:taskflow/components/genericos/iniciarPagina.dart';
 import 'package:taskflow/controller/ProjetoController.dart';
 import 'package:taskflow/controller/Redirecionador.dart';

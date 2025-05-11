@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:taskflow/components/genericos/Botao.dart';
 import 'package:taskflow/components/genericos/construtorFuturo.dart';
 import 'package:taskflow/components/genericos/containerBase.dart';
-import 'package:taskflow/controller/ProjetoController.dart';
+import 'package:taskflow/controller/DiaAgendaController.dart';
 import 'package:taskflow/controller/types.dart';
 
 class relatorioProjeto extends StatelessWidget {
   final int idProjeto;
   final int idDia;
+
+  final Function onSubmit;
+
   const relatorioProjeto({
     super.key,
     required this.idProjeto,
     required this.idDia,
+    required this.onSubmit,
   });
 
   String obterStatus(DiaAgenda dia) {
@@ -63,7 +67,7 @@ class relatorioProjeto extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Construtorfuturo<DiaAgenda>(
-          future: Projetocontroller().obterDia(idDia),
+          future: DiaAgendacontroller().obterDia(idDia),
           loading: Center(child: CircularProgressIndicator()),
           builder:
               (dataRetotno) => Column(
@@ -80,7 +84,7 @@ class relatorioProjeto extends StatelessWidget {
                     child: Botao(
                       color: Color(0xFFB2DBA0),
                       height: 50,
-                      onClick: () => {},
+                      onClick: onSubmit,
                       child: Text(
                         'Salvar informação',
                         style: TextStyle(fontSize: 20),

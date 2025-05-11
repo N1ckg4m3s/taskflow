@@ -1,72 +1,82 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:taskflow/components/genericos/Botao.dart';
+import 'package:taskflow/controller/DiaAgendaController.dart';
 import 'package:taskflow/controller/Redirecionador.dart';
 import 'package:taskflow/controller/types.dart';
 
-class cardDiatrabalhado extends StatelessWidget {
+class cardDiaTrabalhado extends StatefulWidget {
   final DiaAgenda dia;
 
-  const cardDiatrabalhado({super.key, required this.dia});
+  const cardDiaTrabalhado({super.key, required this.dia});
+
+  @override
+  State<cardDiaTrabalhado> createState() => _CardDiaTrabalhadoState();
+}
+
+class _CardDiaTrabalhadoState extends State<cardDiaTrabalhado> {
+  late StatusDiaAgenda _status;
+  late String _horarioEntrada;
+  late String _horarioSaida;
+
+  @override
+  void initState() {
+    super.initState();
+    _status = widget.dia.status;
+    _horarioEntrada = widget.dia.horarioEntrada ?? '##';
+    _horarioSaida = widget.dia.horarioSaida ?? '##';
+  }
 
   Color definirCorPeloStatus() {
-    switch (dia.status) {
+    switch (_status) {
       case StatusDiaAgenda.Atencao:
-        return Color(0xffFECA3E); // Cor para EmEspera
+        return Color(0xffFECA3E);
       case StatusDiaAgenda.Trabalhado:
-        return Color(0xFFB2DBA0); // Cor para Concluido
+        return Color(0xFFB2DBA0);
       case StatusDiaAgenda.Folga:
-        return Color(0xffFE7674); // Cor para Cancelado
+        return Color(0xffFE7674);
       default:
         return Colors.white;
     }
   }
 
-  String diaDaSemana() {
-    switch (dia.data.weekday) {
-      case 1:
-        return 'Segunda-Feira';
-      case 2:
-        return 'Terça-Feira';
-      case 3:
-        return 'Quarta-Feira';
-      case 4:
-        return 'Quinta-Feira';
-      case 5:
-        return 'Sexta-Feira';
-      case 6:
-        return 'Sabado';
-      default:
-        return 'Domingo';
+  StatusDiaAgenda mudarStatusPara() {
+    switch (_status) {
+      case StatusDiaAgenda.NaoDefinido:
+        return StatusDiaAgenda.Trabalhado;
+      case StatusDiaAgenda.Trabalhado:
+        return StatusDiaAgenda.Folga;
+      case StatusDiaAgenda.Folga:
+        return StatusDiaAgenda.Atencao;
+      case StatusDiaAgenda.Atencao:
+        return StatusDiaAgenda.NaoDefinido;
     }
   }
 
-  List<Widget> obterData() {
-    DateTime data = dia.data;
-
-    String diaAgenda = data.day <= 9 ? '0${data.day}' : '${data.day}';
-    String mesAgenda = data.month <= 9 ? '0${data.month}' : '${data.month}';
-
-    String diaNome = diaDaSemana();
-
-    return [
-      Text('$diaAgenda/$mesAgenda', style: TextStyle(fontSize: 30)),
-      Text(diaNome, style: TextStyle(fontSize: 20)),
-    ];
+  void holderChangeStatus() async {
+    final novoStatus = mudarStatusPara();
+    await DiaAgendacontroller().mudarStatusDoDia(widget.dia.id, novoStatus);
+    setState(() {
+      _status = novoStatus;
+    });
   }
+
+  String obterHorarioEntradaSaida() => '$_horarioEntrada / $_horarioSaida';
 
   @override
   Widget build(BuildContext context) {
     final bool redirect =
-        dia.status == StatusDiaAgenda.Atencao ||
-        dia.status == StatusDiaAgenda.Trabalhado;
+        _status == StatusDiaAgenda.Atencao ||
+        _status == StatusDiaAgenda.Trabalhado;
+
     return Botao(
-      onClick: () => {print('change Status')},
+      height: 60,
+      onClick: holderChangeStatus,
       onHold:
           redirect
-              ? () =>
-                  Redirecionador().redirect_to_informacoesDoDia(context, dia)
+              ? () => Redirecionador().redirect_to_informacoesDoDia(
+                context,
+                widget.dia,
+              )
               : null,
       color: definirCorPeloStatus(),
       child: Column(
@@ -74,11 +84,34 @@ class cardDiatrabalhado extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: obterData(),
+            children: [
+              Text(
+                '${widget.dia.data.day.toString().padLeft(2, '0')}/'
+                '${widget.dia.data.month.toString().padLeft(2, '0')}',
+                style: TextStyle(fontSize: 25),
+              ),
+              Text(
+                _diaDaSemana(widget.dia.data.weekday),
+                style: TextStyle(fontSize: 20),
+              ),
+            ],
           ),
-          if (dia.status == StatusDiaAgenda.Trabalhado) Text("asmlkdm"),
+          if (_status == StatusDiaAgenda.Trabalhado)
+            Text(obterHorarioEntradaSaida()),
         ],
       ),
     );
+  }
+
+  String _diaDaSemana(int weekday) {
+    return [
+      'Domingo',
+      'Segunda-Feira',
+      'Terça-Feira',
+      'Quarta-Feira',
+      'Quinta-Feira',
+      'Sexta-Feira',
+      'Sábado',
+    ][weekday % 7];
   }
 }

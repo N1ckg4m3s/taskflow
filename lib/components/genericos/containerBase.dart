@@ -17,6 +17,7 @@ class Containerbase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
       height: height,
       decoration: BoxDecoration(
         color: color ?? Colors.white,

@@ -7,10 +7,10 @@ enum StatusDiaAgenda { NaoDefinido, Trabalhado, Folga, Atencao }
 
 class Projeto {
   final int id;
-  final DateTime dataInicio;
-  final DateTime dataFim;
+  DateTime dataInicio;
+  DateTime dataFim;
   final String nome;
-  final StatusProjeto statusProjeto;
+  StatusProjeto statusProjeto;
 
   Projeto({
     required this.id,
@@ -25,12 +25,19 @@ class DiaAgenda {
   final int id;
   final int idProjeto;
   final DateTime data;
-  final StatusDiaAgenda status;
+  StatusDiaAgenda status;
+
+  String? horarioEntrada = '';
+  String? horarioSaida = '';
+  String? observacaoAtencao = '';
 
   DiaAgenda({
     required this.status,
     required this.idProjeto,
     required this.data,
     required this.id,
+    this.horarioEntrada,
+    this.horarioSaida,
+    this.observacaoAtencao,
   });
 }

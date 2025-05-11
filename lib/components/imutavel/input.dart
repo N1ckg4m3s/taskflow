@@ -71,10 +71,20 @@ class GeneralInput extends StatelessWidget {
             final picked = await showTimePicker(
               context: context,
               initialTime: TimeOfDay.now(),
+              builder: (context, child) {
+                return MediaQuery(
+                  data: MediaQuery.of(
+                    context,
+                  ).copyWith(alwaysUse24HourFormat: true),
+                  child: child!,
+                );
+              },
             );
             if (picked != null) {
-              controller.text = picked.format(context);
-              onSubmit?.call(controller.text);
+              final horaFormatada =
+                  '${picked.hour.toString().padLeft(2, '0')}:${picked.minute.toString().padLeft(2, '0')}';
+              controller.text = horaFormatada;
+              onSubmit?.call(horaFormatada);
             }
           },
         );
