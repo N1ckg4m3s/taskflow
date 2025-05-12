@@ -89,4 +89,22 @@ class DiaAgendaController_teste {
     final DiaAgenda diaAchado = await obterDia(idDia);
     diaAchado.observacaoAtencao = observacao;
   }
+
+  Future<List<DiaAgenda>> obterDiasDoProjetoPeloMes(
+    int idProjeto,
+    int mes,
+  ) async {
+    return dias_teste.where((dia) => dia.data.month == mes).toList();
+  }
+
+  Future<List<int>> obterMesesDoProjeto(int idProjeto) async {
+    List<DiaAgenda> diasDoProjeto =
+        dias_teste.where((dia) => dia.idProjeto == idProjeto).toList();
+
+    List<int> meses = diasDoProjeto.map((dia) => dia.data.month).toList();
+
+    List<int> mesesUnicos = meses.toSet().toList();
+
+    return mesesUnicos;
+  }
 }

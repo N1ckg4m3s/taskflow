@@ -57,21 +57,23 @@ class CardProjetosatuais extends StatelessWidget {
     return Botao(
       onClick: onClick,
       color: definirCorPeloStatus(),
-      // height: 55,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(obterDataDeInicioEFim(), style: TextStyle(fontSize: 15)),
-              Text(obterStatus(), style: TextStyle(fontSize: 15)),
-            ],
-          ),
-          Text(
-            projeto.nome,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-        ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 2),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(obterDataDeInicioEFim(), style: TextStyle(fontSize: 15)),
+                Text(obterStatus(), style: TextStyle(fontSize: 15)),
+              ],
+            ),
+            Text(
+              projeto.nome,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+          ],
+        ),
       ),
     );
   }

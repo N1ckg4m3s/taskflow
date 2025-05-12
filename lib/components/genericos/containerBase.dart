@@ -22,7 +22,11 @@ class Containerbase extends StatelessWidget {
       decoration: BoxDecoration(
         color: color ?? Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(10)),
-        border: Border.all(color: Colors.black, width: 2),
+        border: Border.all(
+          color:
+              color == Colors.transparent ? Colors.transparent : Colors.black,
+          width: 2,
+        ),
       ),
       child: child,
     );

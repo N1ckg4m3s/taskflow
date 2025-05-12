@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:taskflow/components/genericos/Botao.dart';
 import 'package:taskflow/components/genericos/containerBase.dart';
+import 'package:taskflow/controller/Redirecionador.dart';
 
 class relatorioProjeto extends StatelessWidget {
   final int idProjeto;
-  const relatorioProjeto({super.key, required this.idProjeto});
+  final Function setFiltrar;
+  final Function setState;
+  const relatorioProjeto({
+    super.key,
+    required this.idProjeto,
+    required this.setFiltrar,
+    required this.setState,
+  });
+
+  void handleFiltrar() {
+    setFiltrar();
+  }
+
+  void handleHostoricoGastos(context) {}
+
+  void handleHistorico(context) {
+    Redirecionador().redirect_to_historicoDeDiasDoProjeto(
+      context,
+      idProjeto,
+      update: setState,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +55,7 @@ class relatorioProjeto extends StatelessWidget {
                   child: Botao(
                     color: Color(0xFFD8D8D8),
                     height: 50,
-                    onClick: () => {},
+                    onClick: () => handleFiltrar(),
                     child: Text('Filtrar', style: TextStyle(fontSize: 20)),
                   ),
                 ),
@@ -42,7 +64,7 @@ class relatorioProjeto extends StatelessWidget {
                   child: Botao(
                     color: Color(0xFFD8D8D8),
                     height: 50,
-                    onClick: () => {},
+                    onClick: () => handleHostoricoGastos(context),
                     child: Text('Gastos', style: TextStyle(fontSize: 20)),
                   ),
                 ),
@@ -51,7 +73,7 @@ class relatorioProjeto extends StatelessWidget {
                   child: Botao(
                     color: Color(0xFFFECA3E),
                     height: 50,
-                    onClick: () => {},
+                    onClick: () => handleHistorico(context),
                     child: Text('Historico', style: TextStyle(fontSize: 20)),
                   ),
                 ),

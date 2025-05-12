@@ -6,14 +6,32 @@ import 'package:taskflow/controller/types.dart';
 
 class listaDiariasProjeto extends StatefulWidget {
   final int idProjeto;
+  final bool filtrar;
 
-  const listaDiariasProjeto({super.key, required this.idProjeto});
+  const listaDiariasProjeto({
+    super.key,
+    required this.idProjeto,
+    required this.filtrar,
+  });
 
   @override
   State<StatefulWidget> createState() => stateListaDiariasProjeto();
 }
 
 class stateListaDiariasProjeto extends State<listaDiariasProjeto> {
+  List<DiaAgenda> filtrarData(List<DiaAgenda> data) {
+    if (widget.filtrar) {
+      return data
+          .where(
+            (dia) =>
+                dia.status == StatusDiaAgenda.Atencao ||
+                dia.status == StatusDiaAgenda.Folga,
+          )
+          .toList();
+    }
+    return data;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +45,7 @@ class stateListaDiariasProjeto extends State<listaDiariasProjeto> {
               (dataRetornada) => Column(
                 spacing: 5,
                 children:
-                    dataRetornada
+                    filtrarData(dataRetornada)
                         .map(
                           (dia) => cardDiaTrabalhado(
                             dia: dia,

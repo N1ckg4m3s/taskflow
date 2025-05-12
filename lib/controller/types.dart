@@ -5,6 +5,8 @@ enum StatusProjeto { EmAndamento, EmEspera, Concluido, Cancelado }
 
 enum StatusDiaAgenda { NaoDefinido, Trabalhado, Folga, Atencao }
 
+enum StatusGasto { contar, naoContar }
+
 class Projeto {
   final int id;
   DateTime dataInicio;
@@ -39,5 +41,21 @@ class DiaAgenda {
     this.horarioEntrada,
     this.horarioSaida,
     this.observacaoAtencao,
+  });
+}
+
+class gasto {
+  final int id;
+  final int idProjeto;
+  final DateTime data;
+  StatusGasto status;
+  String? observacao = '';
+
+  gasto({
+    required this.status,
+    required this.idProjeto,
+    required this.data,
+    required this.id,
+    this.observacao,
   });
 }

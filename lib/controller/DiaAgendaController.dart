@@ -42,4 +42,18 @@ class DiaAgendacontroller {
   Future<void> salvarInfoAtencao(int idDia, String observacao) async {
     return DiaAgendaController_teste().salvarInfoAtencao(idDia, observacao);
   }
+
+  Future<List<DiaAgenda>> obterDiasDoProjetoPeloMes(
+    int idProjeto,
+    int mes,
+  ) async {
+    return DiaAgendaController_teste().obterDiasDoProjetoPeloMes(
+      idProjeto,
+      mes,
+    );
+  }
+
+  Future<List<int>> obterMesesDoProjeto(int idProjeto) async {
+    return DiaAgendaController_teste().obterMesesDoProjeto(idProjeto);
+  }
 }

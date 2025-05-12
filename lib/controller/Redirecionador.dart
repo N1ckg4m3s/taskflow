@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:taskflow/controller/types.dart';
+import 'package:taskflow/pages/HistoricoDeDias.dart';
 import 'package:taskflow/pages/informacoesDoDia/informacoesDoDia.dart';
 import 'package:taskflow/pages/informacoesProjeto/informacoesProjeto.dart';
 
@@ -12,7 +13,7 @@ class Redirecionador {
     Function? update,
   }) async {
     print("irPara adicionarNovoProjeto");
-    final bool retorno = false;
+    final retorno = false;
 
     if (retorno && update != null) update();
   }
@@ -33,34 +34,41 @@ class Redirecionador {
   }
 
   void redirect_to_configuracoesDoProjeto(
-    BuildContext context, {
+    BuildContext context,
+    int idProjeto, {
     Function? update,
   }) async {
     print("irPara configuracoesDoProjeto");
-    final bool retorno = false;
+    final retorno = false;
 
     if (retorno && update != null) update();
   }
 
   /* Redirecionamentos do relatorioDoProjeto */
   void redirect_to_gastosDoProjeto(
-    BuildContext context, {
+    BuildContext context,
+    int idProjeto, {
     Function? update,
   }) async {
     print("irPara gastosDoProjeto");
-    final bool retorno = false;
+    final retorno = false;
 
     if (retorno && update != null) update();
   }
 
   void redirect_to_historicoDeDiasDoProjeto(
-    BuildContext context, {
+    BuildContext context,
+    int idProjeto, {
     Function? update,
   }) async {
-    print("irPara historicoDeDiasDoProjeto");
-    final bool retorno = false;
+    final retorno = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => historicoDeDias(idProjeto: idProjeto),
+      ),
+    );
 
-    if (retorno && update != null) update();
+    if (retorno == true && update != null) update();
   }
 
   void redirect_to_informacoesDoDia(
@@ -68,7 +76,7 @@ class Redirecionador {
     DiaAgenda dia, {
     Function? update,
   }) async {
-    final bool retorno = await Navigator.push(
+    final retorno = await Navigator.push(
       context,
       MaterialPageRoute(
         builder:
@@ -83,27 +91,29 @@ class Redirecionador {
   /* Redirecionamentos do gastosDoProjeto */
   void redirect_to_novoGasto(BuildContext context, {Function? update}) async {
     print("irPara novoGasto");
-    final bool retorno = false;
+    final retorno = false;
 
     if (retorno && update != null) update();
   }
 
   void redirect_to_informacoesDoGasto(
-    BuildContext context, {
+    BuildContext context,
+    int idGasto, {
     Function? update,
   }) async {
     print("irPara informacoesDoGasto");
-    final bool retorno = false;
+    final retorno = false;
 
     if (retorno && update != null) update();
   }
 
   void redirect_to_historicoDeGastos(
-    BuildContext context, {
+    BuildContext context,
+    int idProjeto, {
     Function? update,
   }) async {
     print("irPara historicoDeGastos");
-    final bool retorno = false;
+    final retorno = false;
 
     if (retorno && update != null) update();
   }
