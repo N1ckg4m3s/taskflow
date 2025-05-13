@@ -70,7 +70,11 @@ class CardProjetosatuais extends StatelessWidget {
             ),
             Text(
               projeto.nome,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ],
         ),

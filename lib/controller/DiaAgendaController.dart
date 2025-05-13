@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:taskflow/controller/Controllers%20Teste/DiaAgendaController.dart';
 import 'package:taskflow/controller/types.dart';
 
@@ -23,8 +25,8 @@ class DiaAgendacontroller {
     return DiaAgendaController_teste().obterDia(idDia);
   }
 
-  Future<List<DiaAgenda>> obterDiasDoProjeto(int idProjeto) async {
-    return DiaAgendaController_teste().obterDiasDoProjeto(idProjeto);
+  Future<List<DiaAgenda>> obterDiasDoProjeto_ultimasDuasSemanas(int idProjeto) async {
+    return DiaAgendaController_teste().obterDiasDoProjeto_ultimasDuasSemanas(idProjeto);
   }
 
   Future<void> salvarInfoTrabalhado(

@@ -46,6 +46,7 @@ class DiaAgenda {
 
 class gasto {
   final int id;
+  final int valor;
   final int idProjeto;
   final DateTime data;
   StatusGasto status;
@@ -53,6 +54,7 @@ class gasto {
 
   gasto({
     required this.status,
+    required this.valor,
     required this.idProjeto,
     required this.data,
     required this.id,

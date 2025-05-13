@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:taskflow/controller/types.dart';
 import 'package:taskflow/pages/HistoricoDeDias.dart';
+import 'package:taskflow/pages/HistoricoDeGastos.dart';
 import 'package:taskflow/pages/informacoesDoDia/informacoesDoDia.dart';
+import 'package:taskflow/pages/informacoesGastos/informacoesGastos.dart';
 import 'package:taskflow/pages/informacoesProjeto/informacoesProjeto.dart';
 
 class Redirecionador {
@@ -50,8 +52,12 @@ class Redirecionador {
     int idProjeto, {
     Function? update,
   }) async {
-    print("irPara gastosDoProjeto");
-    final retorno = false;
+    final retorno = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => informacoesGastos(idProjeto: idProjeto),
+      ),
+    );
 
     if (retorno && update != null) update();
   }
@@ -89,8 +95,21 @@ class Redirecionador {
   }
 
   /* Redirecionamentos do gastosDoProjeto */
-  void redirect_to_novoGasto(BuildContext context, {Function? update}) async {
-    print("irPara novoGasto");
+  void redirect_to_adicionarNovoGasto(
+    BuildContext context, {
+    Function? update,
+  }) async {
+    print("irPara adicionarNovoGasto");
+    final retorno = false;
+
+    if (retorno && update != null) update();
+  }
+
+  void redirect_to_AtualizarGasto(
+    BuildContext context, {
+    Function? update,
+  }) async {
+    print("irPara AtualizarGasto");
     final retorno = false;
 
     if (retorno && update != null) update();
@@ -112,12 +131,17 @@ class Redirecionador {
     int idProjeto, {
     Function? update,
   }) async {
-    print("irPara historicoDeGastos");
-    final retorno = false;
+    final retorno = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => historicoDeGastos(idProjeto: idProjeto),
+      ),
+    );
 
     if (retorno && update != null) update();
   }
 
+  /* Sem pagina definido */
   void redirect_to_voltar(BuildContext context) async {
     Navigator.pop(context, true); // True é para resetar
   }

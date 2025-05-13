@@ -1,24 +1,25 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:taskflow/components/cards/card_diaTrabalhado.dart';
+import 'package:taskflow/components/cards/card_gastoDoProjeto.dart';
 import 'package:taskflow/components/genericos/Botao.dart';
 import 'package:taskflow/components/genericos/construtorFuturo.dart';
 import 'package:taskflow/components/genericos/containerBase.dart';
 import 'package:taskflow/components/genericos/iniciarPagina.dart';
 import 'package:taskflow/components/imutavel/voltarNavBar.dart';
 import 'package:taskflow/controller/DiaAgendaController.dart';
+import 'package:taskflow/controller/GastosController.dart';
 import 'package:taskflow/controller/controladorAuxiliar.dart';
 
-class historicoDeDias extends StatefulWidget {
+class historicoDeGastos extends StatefulWidget {
   final int idProjeto;
-  const historicoDeDias({super.key, required this.idProjeto});
+  const historicoDeGastos({super.key, required this.idProjeto});
 
   @override
-  State<StatefulWidget> createState() => stateHistoricoDeDias();
+  State<StatefulWidget> createState() => stateHistoricoDeGastos();
 }
 
-class stateHistoricoDeDias extends State<historicoDeDias> {
+class stateHistoricoDeGastos extends State<historicoDeGastos> {
   ValueNotifier<int> mesAtual = ValueNotifier<int>(-1);
   List<int> mesesDoProjeto = [];
 
@@ -66,7 +67,7 @@ class stateHistoricoDeDias extends State<historicoDeDias> {
                   ),
                   SingleChildScrollView(
                     child: Construtorfuturo(
-                      future: DiaAgendacontroller().obterDiasDoProjetoPeloMes(
+                      future: Gastoscontroller().obterGastosDoProjetoPorMes(
                         widget.idProjeto,
                         mes,
                       ),
@@ -76,8 +77,8 @@ class stateHistoricoDeDias extends State<historicoDeDias> {
                             children:
                                 data
                                     .map(
-                                      (e) => cardDiaTrabalhado(
-                                        dia: e,
+                                      (e) => cardGastosDoProjeto(
+                                        gastoDoProjeto: e,
                                         onUpdate: () => setState(() {}),
                                       ),
                                     )

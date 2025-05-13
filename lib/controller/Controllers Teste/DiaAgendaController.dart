@@ -60,8 +60,18 @@ List<DiaAgenda> dias_teste = [
 ];
 
 class DiaAgendaController_teste {
-  List<DiaAgenda> obterDiasDoProjeto(int idProjeto) {
-    return dias_teste.where((d) => d.idProjeto == idProjeto).toList();
+  List<DiaAgenda> obterDiasDoProjeto_ultimasDuasSemanas(int idProjeto) {
+    final hoje = DateTime.now();
+    final duasSemanasAtras = hoje.subtract(Duration(days: 14));
+
+    return dias_teste
+        .where(
+          (d) =>
+              d.idProjeto == idProjeto &&
+              d.data.isAfter(duasSemanasAtras) &&
+              d.data.isBefore(hoje.add(Duration(days: 1))),
+        )
+        .toList();
   }
 
   Future<DiaAgenda> obterDia(int idDia) async {
@@ -94,7 +104,9 @@ class DiaAgendaController_teste {
     int idProjeto,
     int mes,
   ) async {
-    return dias_teste.where((dia) => dia.data.month == mes).toList();
+    return dias_teste
+        .where((dia) => (dia.idProjeto == idProjeto && dia.data.month == mes))
+        .toList();
   }
 
   Future<List<int>> obterMesesDoProjeto(int idProjeto) async {

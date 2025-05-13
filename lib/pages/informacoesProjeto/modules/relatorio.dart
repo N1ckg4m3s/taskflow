@@ -18,7 +18,13 @@ class relatorioProjeto extends StatelessWidget {
     setFiltrar();
   }
 
-  void handleHostoricoGastos(context) {}
+  void handleHostoricoGastos(context) {
+    Redirecionador().redirect_to_gastosDoProjeto(
+      context,
+      idProjeto,
+      update: setState,
+    );
+  }
 
   void handleHistorico(context) {
     Redirecionador().redirect_to_historicoDeDiasDoProjeto(
@@ -37,7 +43,12 @@ class relatorioProjeto extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Relatório do projeto', style: TextStyle(fontSize: 25)),
+            Center(
+              child: Text(
+                'Relatório do projeto',
+                style: TextStyle(fontSize: 25),
+              ),
+            ),
             Text(
               'Nome: [teste de nome muito grande para ver o que faz]',
               style: TextStyle(fontSize: 20, overflow: TextOverflow.ellipsis),
